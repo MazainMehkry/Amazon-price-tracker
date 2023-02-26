@@ -17,7 +17,7 @@ After entering correct link and price, you have to click on "add" button.
 
 ![Added finally](https://user-images.githubusercontent.com/87644146/221403585-9371f709-d5f9-4c1b-9317-f01d37e35498.png)
 
-After you add few product links and prices. You can click on "check" button, which will go through each link and compare the price. If any product is currently under
+After you add few products link and price. You can click on "check" button, which will go through each link and compare the price. If any product is currently under
 your given price then you will get a popup with the details of the product one by one.
 
 ![Item on sale and will be copied](https://user-images.githubusercontent.com/87644146/221403678-bd93a399-d767-4c16-b1be-c0f09ed33136.png)
