@@ -13,10 +13,10 @@ wanted_price = []
 prices = []
 
 request_params = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 OPR/92.0.0.0",
-            "Accept-Language": "en-US,en;q=0.9",
-            "Accept-Encoding": "gzip, deflate",
-            "Connection": "keep-alive"
+            "User-Agent": "YOUR USER AGENT HERE",  # You can find these values here : https://myhttpheader.com
+            "Accept-Language": "YOUR ACCEPT LANGUAGE HERE",
+            "Accept-Encoding": "YOUR ACCEPT ENCODING HERE",
+            "Connection": "keep-alive"  # Leave this value
         }
 
 
@@ -58,9 +58,17 @@ def not_exists(link3):
         soup.find(class_="h1").get_text()  # Searches for a specific text on 404 page,
         # returns true if text not found (product exists) and false if not found (doesn't exist)
     except AttributeError:
-        return True
+        print("")
     else:
         return False
+
+    try:
+        product = soup.find(id="productTitle").getText()
+        price = soup.find(class_="a-offscreen").get_text()
+    except AttributeError:
+        return False
+    else:
+        return True
 
 
 # ---------------------------- Check if price is proper ------------------------------- #
