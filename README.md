@@ -22,7 +22,7 @@ your given price then you will get a popup with the details of the product one b
 
 ![Item on sale and will be copied](https://user-images.githubusercontent.com/87644146/221403678-bd93a399-d767-4c16-b1be-c0f09ed33136.png)
 
-The link of the product will also be copied to your clipboard after you click on "ok", so make sure to you open any browser and paste the link before clicking on next "ok".
+The link of the product will also be copied to your clipboard after you click on "ok", so make sure to open any browser and paste the link before clicking on next "ok".
 
 ![want to delete after getting it on sale](https://user-images.githubusercontent.com/87644146/221403809-114738b4-be78-4d5c-9b7b-7e2e39afe76d.png)
 
