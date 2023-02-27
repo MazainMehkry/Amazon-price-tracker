@@ -3,8 +3,9 @@ from bs4 import BeautifulSoup
 from tkinter import *
 from tkinter import messagebox
 import re
-import pyperclip
-import customtkinter
+import pyperclip  # Use pip install pyperclip in the terminal
+import customtkinter  # Use pip install customtkinter
+import threading
 
 amazon = []
 links = []
@@ -13,10 +14,10 @@ wanted_price = []
 prices = []
 
 request_params = {
-            "User-Agent": "YOUR USER AGENT HERE",  # You can find these values here : https://myhttpheader.com
-            "Accept-Language": "YOUR ACCEPT LANGUAGE HERE",
-            "Accept-Encoding": "YOUR ACCEPT ENCODING HERE",
-            "Connection": "keep-alive"  # Leave this value
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 OPR/92.0.0.0",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip, deflate",
+            "Connection": "keep-alive"
         }
 
 
@@ -52,7 +53,7 @@ def not_exists(link3):
     global request_params
 
     response = requests.get(url=link3, headers=request_params)
-    soup = BeautifulSoup(response.content, "lxml")
+    soup = BeautifulSoup(response.text, "lxml")  # Please install lxml in the terminal using 'pip install lxml'
 
     try:
         soup.find(class_="h1").get_text()  # Searches for a specific text on 404 page,
@@ -83,6 +84,10 @@ def check_price(expected_price):
 
 
 # ---------------------------- Add links and price ------------------------------- #
+def start_add_link():
+    threading.Thread(target=add_link).start()
+
+
 def add_link():
 
     link1 = link_entry.get()
@@ -152,6 +157,10 @@ def delete_current(x):
 
 
 # ---------------------------- Check for links and price ------------------------------- #
+def start_check_prices():
+    threading.Thread(target=check_prices).start()
+
+
 def check_prices():
     global links, wanted_price
 
@@ -183,7 +192,7 @@ def check_prices():
         for URL in amazon:
 
             response = requests.get(url=URL, headers=request_params)
-            soup = BeautifulSoup(response.content, "lxml")
+            soup = BeautifulSoup(response.text, "lxml")  # Please install lxml in the terminal using 'pip install lxml'
 
             try:
                 product = soup.find(id="productTitle").getText()
@@ -259,7 +268,7 @@ expec_entry = Entry(width=40)
 expec_entry.grid(column=1, row=2, columnspan=2, pady=5)
 
 add_btn = customtkinter.CTkButton(master=app, text="Add", fg_color="#f8981d", hover_color="#ffbf00",
-                                  text_color="black", width=70, command=add_link)
+                                  text_color="black", width=70, command=start_add_link)
 add_btn.grid(column=3, row=1, pady=5, padx=6)
 
 check_btn = customtkinter.CTkButton(master=app, text="Check", fg_color="#f8981d", hover_color="#ffbf00",
